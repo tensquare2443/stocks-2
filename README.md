@@ -1,5 +1,5 @@
 Built with: Vue, AlphaVantage API
 
-# stocks-1
+# Historical Stock Data
 
 > A Vue.js project
