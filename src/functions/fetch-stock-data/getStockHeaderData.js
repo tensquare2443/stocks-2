@@ -1,8 +1,6 @@
-import apiKey from '../../vars.js';
-
 export default function(symbol) {
   return fetch(
-    `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=30min&apikey=${apiKey}`
+    `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=30min&apikey=447KWSIKEZ0MV00S`
   )
     .then(response => response.json())
     .then(json => {
