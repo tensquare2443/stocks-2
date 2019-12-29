@@ -66,6 +66,7 @@ export default {
     },
     getStockData: function(e) {
       e.preventDefault();
+
       this.fetchError = false;
       this.stockInputError = validateStockInput(this.stockInput);
       this.dateInputError = validateDateInput(this.dateInput);
@@ -77,9 +78,9 @@ export default {
         Math.round(
           (+new Date() -
             +new Date(
-              `${this.dateInput.split("/")[0]} ${
+              `${this.dateInput.split("/")[0]}/${
                 this.dateInput.split("/")[1]
-              } ${this.dateInput.split("/")[2]}`
+              }/${this.dateInput.split("/")[2]}`
             )) /
             (1000 * 60 * 60 * 24)
         ) - 1;

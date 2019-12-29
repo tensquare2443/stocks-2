@@ -50,6 +50,9 @@
       <!-- <button class="fetch-data-btn">
         Fetch Stock Data
       </button> -->
+      <p style="text-align: center">
+        {{ funcMobTest }}
+      </p>
     </form>
   </div>
 </template>

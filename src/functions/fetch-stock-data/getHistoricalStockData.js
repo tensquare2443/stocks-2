@@ -20,16 +20,31 @@ export default function(symbol, dayRange) {
     .then(json => {
       let labels = [];
       let stockPriceData = [];
-      // const earliestTime = +new Date() - 1000 * 60 * 60 * 24 * dayRange;
+      const months = {
+        Jan: "01",
+        Feb: "02",
+        Mar: "03",
+        Apr: "04",
+        May: "05",
+        Jun: "06",
+        Jul: "07",
+        Aug: "08",
+        Sep: "09",
+        Oct: "10",
+        Nov: "11",
+        Dec: "12"
+      };
+
       const earliestTimeNonRounded = new Date(+new Date() - 1000 * 60 * 60 * 24 * dayRange).toString();
-      const earliestTimeMonth = earliestTimeNonRounded.split(' ')[1];
+      const earliestTimeMonth = months[earliestTimeNonRounded.split(' ')[1]];
       const earliestTimeDay = earliestTimeNonRounded.split(' ')[2];
       const earliestTimeYear = earliestTimeNonRounded.split(' ')[3];
-      const earliestTime = +new Date(`${earliestTimeMonth} ${earliestTimeDay} ${earliestTimeYear}`);
+      const earliestTime = +new Date(`${earliestTimeMonth}/${earliestTimeDay}/${earliestTimeYear}`);
       const possibleTimes = Object.keys(json[endpointTimePeriodName]);
 
       for (var i = 0; i < possibleTimes.length; i++) {
-        const possibleTime = +new Date(possibleTimes[i]);
+        const possibleTime = +new Date(possibleTimes[i].replace(" ", "T"));
+
         if (possibleTime >= earliestTime) {
           labels.unshift(possibleTime);
           stockPriceData.unshift(
@@ -67,5 +82,6 @@ export default function(symbol, dayRange) {
     })
     .catch(e => {
       return "Server Error";
+      // return e;
     });
 }
